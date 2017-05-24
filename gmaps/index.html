@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<title></title>
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+<!-- CSS -->
+<link rel="stylesheet" media="all" type="text/css" href="css/map.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+
+
+<!-- Javascript -->
+<!-- 3rd Party Libraries -->
+<script type="text/javascript" src="js/libs/jquery-2.2.0.min.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARNS3mh7oxFuCY3g1g_AxS12W1rU7S3sM"></script>
+
+
+<!-- Custom Code -->
+<script type="text/javascript" src="js/gmap.js"></script>
+
+<script>
+
+$(document).ready(function ()
+{
+	var center = new google.maps.LatLng(0, 0);
+
+	var mapOptions = {
+		zoom: 2,
+		center: center,
+		tilt: 0,
+		panControl: false,
+		zoomControl: true,
+		streetViewControl: false,
+		mapTypeControl: true,
+		mapTypeId: google.maps.MapTypeId.HYBRID
+	};
+
+	var gmap = new GMap();
+	gmap.loadMap("map_canvas", mapOptions);
+
+	var markerOptions = {
+		position: new google.maps.LatLng(39.828354, -98.579457),
+		title: '1st Marker',
+		label: 'ST',
+		fitBounds: false,
+		iconColor: '00FF00',
+		iconSize: '85',
+		iconFontSize: '11',
+	};
+
+	var m = gmap.addMarker(markerOptions);
+
+	gmap.geoCodeAddress('New York', function (geoCodeSuccess, status, latLng)
+	{
+		if (geoCodeSuccess)
+		{
+			gmap.addMarker({
+				position: latLng
+			});
+		}
+	});
+
+	gmap.geoCodeAddress('Oregon', function (geoCodeSuccess, status, latLng)
+	{
+		if (geoCodeSuccess)
+		{
+			gmap.addMarker({
+				position: latLng,
+				label: 'Oregon',
+				iconColor: 'DFDFDF',
+				iconSize: '1.6',
+				iconFontSize: '11',
+				fitBounds: true
+			});
+		}
+	});
+
+	// remove the m marker and reset the map bounds to fit remaining markers
+	gmap.removeMarker(m, true);
+});
+
+</script>
+</head>
+
+<body>
+	<div id="container">   	
+		<div id="map_canvas"></div>
+	</div>
+
+	<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li active><a href="">Iniciar Sesion</a></li>
+            <!-- <li disabled><a href="">Find Teammates</a></li> -->
+        </ul>
+        <h3 class="text-muted">Nomencladores Lobos</h3>
+    </div>
+
+    <div class="row content">
+
+        <div class="col-md-7">
+            <div id="map_canvas"></div>
+            <div id="map_canvas"></div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-center">Agregar marcador  <span class="glyphicon glyphicon-map-marker"></span></h2>
+                </div>
+                <!-- Panel Body -->
+                <div class="panel-body">
+
+                    <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
+                    <form name ="addForm" novalidate>
+                        <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                        <div class="form-group">
+                            <label for="username">Username <span class="badge">All fields required</span></label>
+                            <input type="text" class="form-control" id="username" placeholder="OldandGold" ng-model="formData.username" required>
+                        </div>
+                        <label class="radio control-label">Gender</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="radiomale" value="Male" ng-model="formData.gender">
+                                Male
+                            </label>
+                        </div>
+                        <div class="radio" required>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="radiofemale" value="Female" ng-model="formData.gender">
+                                Female
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="radioother" value="What's it to ya?" ng-model="formData.gender">
+                                What's it to ya?
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" placeholder="72" ng-model="formData.age" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Favorite Language</label>
+                            <input type="text" class="form-control" id="language" placeholder="Fortran" ng-model="formData.favlang" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" value="39.500" ng-model="formData.latitude" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="verified">HTML5 Verified Location? <span><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
+                            <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="formData.htmlverified" readonly>
+                        </div>
+                        <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
+                        <button type="submit" class="btn btn-danger btn-block" ng-disabled="addForm.$invalid">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <!-- Footer -->
+    <div class="footer">
+        <p class="text-center">
+        <span class="glyphicon glyphicon-check"></span>
+        Municipio de Lobos - Secretaría de Gobierno</p>
+    </div>
+</div>
+</body>
+</html>
