@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Declares meanMapApp as the starting Angular module -->
-<html class="no-js" ng-app="meanMapApp">
+<html>
 <head>
     <meta charset="utf-8">
     <title>Nomencladores</title>
@@ -13,8 +13,71 @@
 
     <!-- JS Source -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARNS3mh7oxFuCY3g1g_AxS12W1rU7S3sM" type="text/javascript"></script>
-	<script src="js/initmap.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARNS3mh7oxFuCY3g1g_AxS12W1rU7S3sM"></script>
+    <script type="text/javascript" src="js/gis.js"></script>
+
+<script>
+
+$(document).ready(function ()
+{
+    var center = new google.maps.LatLng(0, 0);
+
+    var mapOptions = {
+        zoom: 2,
+        center: center,
+        tilt: 0,
+        panControl: false,
+        zoomControl: true,
+        streetViewControl: false,
+        mapTypeControl: true,
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+
+    var gmap = new GMap();
+    gmap.loadMap("map_canvas", mapOptions);
+
+    var markerOptions = {
+        position: new google.maps.LatLng(39.828354, -98.579457),
+        title: '1st Marker',
+        label: 'ST',
+        fitBounds: false,
+        iconColor: '00FF00',
+        iconSize: '.85',
+        iconFontSize: '11',
+    };
+
+    var m = gmap.addMarker(markerOptions);
+
+    gmap.geoCodeAddress('New York', function (geoCodeSuccess, status, latLng)
+    {
+        if (geoCodeSuccess)
+        {
+            gmap.addMarker({
+                position: latLng
+            });
+        }
+    });
+
+    gmap.geoCodeAddress('Oregon', function (geoCodeSuccess, status, latLng)
+    {
+        if (geoCodeSuccess)
+        {
+            gmap.addMarker({
+                position: latLng,
+                label: 'Oregon',
+                iconColor: 'DFDFDF',
+                iconSize: '1.6',
+                iconFontSize: '11',
+                fitBounds: true
+            });
+        }
+    });
+
+    // remove the m marker and reset the map bounds to fit remaining markers
+    gmap.removeMarker(m, true);
+});
+
+</script>
    
 </head>
 <body>
@@ -30,7 +93,7 @@
     <div class="row content">
 
         <div class="col-md-7">
-            <div id="map"><img src="holder.js/645x645"></div>
+            <div id="map_canvas"></div>
         </div>
 
         <div class="col-md-5">
@@ -97,9 +160,11 @@
     <hr/>
     <!-- Footer -->
     <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Created by Ahmed Haque for Scotch IO -
-            <a href="https://scotch.io/">App Tutorial</a> | <a href="https://github.com/afhaque/MeanMapAppV2.0">Github Repo</a></p>
+        <p class="text-center">
+        <span class="glyphicon glyphicon-check"></span>
+        Municipio de Lobos - Secretaría de Gobierno</p>
     </div>
 </div>
+
 </body>
 </html>
