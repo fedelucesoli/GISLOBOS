@@ -12,118 +12,22 @@
 
 </head>
 <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
       #map {
         height: 100%;
       }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
     </style>
-<body>
-
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: {lat: -35.1870349, lng: -59.0949762},
-          zoom: 14,
-          disableDoubleClickZoom: true,
-          disableDefaultUI: true,
-          styles: [
-                {
-                  featureType: 'poi.business',
-                  stylers: [{visibility: 'off'}]
-                },
-                {
-                  featureType: 'transit',
-                  elementType: 'labels.icon',
-                  stylers: [{visibility: 'off'}]
-                }
-              ]
-
-
-        });
-        map.data.loadGeoJson(
-           'http://localhost:8888/GISLOBOS/api/public/nomenclador');
-
-        // var script = document.createElement('script');
-        //         // This example uses a local copy of the GeoJSON stored at
-        //         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        //         script.src = 'http://localhost:8888/GISLOBOS/api/public/nomenclador';
-                // document.getElementsByTagName('head')[0].appendChild(script);
-
-                window.eqfeed_callback = function(results) {
-                for (var i = 0; i < results.features.length; i++) {
-                  var coords = results.features[i].geometry.coordinates;
-                  var latLng = new google.maps.LatLng(coords[1],coords[0]);
-                  var marker = new google.maps.Marker({
-                    position: latLng,
-                    map: map,
-                    animation: drop,
-                    clickable: true,
-                    symbol: circle,
-                  });
-                }
-              }
-
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-
-        map.addListener('dblclick', function(e) {
-          placeMarkerAndPanTo(e.latLng, map);
-          llenarFormulario(e.latLng);
-          geocodeLatLng(geocoder, map,  e.latLng);
-
-        });
-
-      }
-
-      function placeMarkerAndPanTo(latLng, map) {
-             var marker = new google.maps.Marker({
-               position: latLng,
-               map: map,
-               draggable: true,
-               icon: {
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: 5,
-                  
-                },
-
-             });
-             map.panTo(latLng);
-      }
-
-      function llenarFormulario(latLng){
-        $('#longitud').val(latLng.lng());
-        $('#latitud').val(latLng.lat());
-      }
-
-      function geocodeLatLng(geocoder, map, latLng) {
-      var latlng = latLng;
-
-      geocoder.geocode({'location': latlng}, function(results, status) {
-        if (status === 'OK') {
-          if (results[1]) {
-            $('#direccion').val(results[0].address_components[1].long_name +' ' + results[0].address_components[0].long_name);
-          } else {
-            window.alert('No results found');
-          }
-        } else {
-          window.alert('Geocoder failed due to: ' + status);
-        }
-      });
-    }
-
-    </script>
-
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfblT4FmCzVOJNslU2HoYgmUv5W3Fc0nQ&callback=initMap">
       </script>
+    <!-- <script src="js/gis.js" type="text/javascript" charset="utf-8"></script> -->
+    <script src="js/gis.js" type="text/javascript" charset="utf-8"></script>
+
+<body>
 
 
       <div class="container">

@@ -1,23 +1,5 @@
 $( document ).ready(function() {
 
-//   var settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "http://localhost:8888/GISLOBOS/api/public/nomenclador",
-//   "method": "GET",
-//   "headers": {
-//     "cache-control": "no-cache",
-//     // "postman-token": "91a58be3-a6a8-4d3b-a8b0-0f135af059e7"
-//   },
-//   "processData": false,
-//   "contentType": false,
-//   "mimeType": "multipart/form-data",
-// }
-//
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
-
 
   $('#form').submit(function(e){
 
@@ -46,7 +28,8 @@ $( document ).ready(function() {
     var settings = {
       "async": true,
       "crossDomain": true,
-      "url": "http://localhost:8888/GISLOBOS/api/public/nomenclador",
+      // "url": "http://localhost:8000/GISLOBOS/api/public/nomenclador",
+      "url": "http://localhost:8000/nomenclador",
       "method": "POST",
       "headers": {
         "cache-control": "no-cache",

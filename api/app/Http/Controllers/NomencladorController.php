@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 
 class NomencladorController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         //
@@ -52,6 +48,10 @@ class NomencladorController extends Controller
 
     	return response()->json('Removed successfully.');
 	}
+
+public function fede(){
+  return 'FEDEEEE';
+}
 
 	public function index(){
 

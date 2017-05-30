@@ -14,15 +14,21 @@
 $app->get('/', function () use ($app) {
     return $app->version();
 });
-$app->get('nomenclador', function () use ($app) {
-    return $app->version();
+$app->get('foo', function () {
+    return 'Hello World';
+});
+
+$app->get('fede', function(){
+  echo 'FEDE';
 });
 
 
-	$app->get('nomenclador','NomencladorController@index');
-  //
- $app->put('Nomenclador/{id}','Nomenclador@updateNomenclador');
-  //
-	// $app->delete('Nomenclador/{id}','Nomenclador@deleteNomenclador');
-  //
- $app->post('nomenclador','NomencladorController@createNomenclador');
+$app->get('nomenclador', 'NomencladorController@index');
+
+$app->put('Nomenclador/{id}', 'NomencladorController@updateNomenclador');
+
+// $app->post('nomenclador','NomencladorController@createNomenclador');
+
+ //
+ // $app->delete('Nomenclador/{id}','Nomenclador@deleteNomenclador');
+ //
