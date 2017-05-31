@@ -20,35 +20,34 @@ function initMap() {
 	map.data.loadGeoJson('http://localhost:8000/nomenclador');
 
 	map.data.setStyle(function(feature) {
-		var clasificacion = feature.properties;
-		console.log(clasificacion);
+
+		var clasificacion = feature.getProperty;
 		return {
 			icon: getCircle(clasificacion)
 		};
 	});
 
+	map.addListener('click', function(e) {
+          placeMarker(e.latLng, map);
+          llenarFormulario(e.latLng);
+          geocodeLatLng(geocoder, map,  e.latLng);
+        });
+
+
+
 }
+
+
 
 function getCircle(clasificacion) {
 	return {
 		path: google.maps.SymbolPath.CIRCLE,
-		fillColor: colorMarker(clasificacion),
+		fillColor: 'red',
+		strokeWeight: 0,
+		//colorMarker(),
 		fillOpacity: 1,
 		scale: 5,
-		// scale: Math.pow(2, clasificacion) / 2,
-		strokeColor: 'white',
-		strokeWeight: .5
 	};
-}
-
-function colorMarker (caracteristicas){
-	var fillColor;
-	if(caracteristicas){
-		fillColor: 'red';
- }else {
-	 fillColor: 'black';
- }
- return fillColor;
 }
 
 function eqfeed_callback(results) {
