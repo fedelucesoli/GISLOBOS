@@ -20,6 +20,8 @@
         margin: 0;
         padding: 0;
       }
+
+
     </style>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfblT4FmCzVOJNslU2HoYgmUv5W3Fc0nQ&callback=initMap">
@@ -33,13 +35,10 @@
       <div class="container">
       <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <a class="navbar-brand" href="#">Nomencladores Lobos</a>
-
       </nav>
     </div>
     <br>
 <div class="container">
-
-
 
     <div class="row content">
 
@@ -57,6 +56,8 @@
 
                     <form name ="addForm" id="form" novalidate>
                         <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                        <input type="hidden" class="form-control" id="id" placeholder="" name="id">
+
                         <hr>
                         <label class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" name="falta_cano">
@@ -84,7 +85,7 @@
                         <hr><br>
                         <div class="form-group">
                             <label for="direccion">Direccion <span class="badge">Cargando</span></label>
-                            <input type="text" class="form-control" id="direccion" placeholder="Salgado 40" name="direccion" required>
+                            <input type="text" class="form-control" id="direccion" placeholder="" name="direccion" required>
                         </div>
                         <div class="form-group">
                             <label for="longitud">Longitud <span class="badge">Cargando</span></label>
@@ -95,10 +96,7 @@
                             <label for="latitud">Latitud <span class="badge">Cargando</span></label>
                             <input type="text" class="form-control" id="latitud" placeholder="" name="latitud" readonly>
                         </div>
-
-
-                        <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
-                        <button type="submit" class="btn btn-danger btn-block">Enviar</button>
+                        <input type="submit" class="btn btn-danger btn-block" value="Enviar">
                     </form>
                 </div>
             </div>

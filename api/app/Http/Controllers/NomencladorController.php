@@ -62,13 +62,13 @@ public function fede(){
       );
       foreach ($nomencladores as $key) {
         $feature = array(
-          'id' => $key->id,
           'type' => 'Feature',
           'geometry' => array(
             'type' => 'Point',
             'coordinates' => array($key->long,$key->lat)
           ),
           'properties' => array(
+            'id' => $key->id,
             'direccion' => $key->direccion,
             'falta_cano' => $key->falta_cano,
             'falta_nomenclador' => $key->falta_nomenclador,

@@ -27,7 +27,7 @@ $app->get('nomenclador', 'NomencladorController@index');
 
 $app->put('Nomenclador/{id}', 'NomencladorController@updateNomenclador');
 
-// $app->post('nomenclador','NomencladorController@createNomenclador');
+$app->post('nomenclador','NomencladorController@createNomenclador');
 
  //
  // $app->delete('Nomenclador/{id}','Nomenclador@deleteNomenclador');

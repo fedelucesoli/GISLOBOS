@@ -4,10 +4,14 @@ $( document ).ready(function() {
   $('#form').submit(function(e){
 
     e.preventDefault();
-    var falta_cano = ($('#form input[name="falta_cano"]').is(':checked') === true)? '1' : false;
-    var falta_nomenclador = ($('#form input[name="falta_nomenclador"]').is(':checked') === true)? '1' : false;
-    var falta_flecha = ($('#form input[name="falta_flecha"]').is(':checked') === true)? '1' : false;
-    var mal_estado = ($('#form input[name="mal_estado"]').is(':checked') === true)? '1' : false;
+    var button = $('#form input[type="submit"]'),
+        falta_cano = ($('#form input[name="falta_cano"]').is(':checked') === true)? '1' : false,
+        falta_nomenclador = ($('#form input[name="falta_nomenclador"]').is(':checked') === true)? '1' : false,
+        falta_flecha = ($('#form input[name="falta_flecha"]').is(':checked') === true)? '1' : false,
+        mal_estado = ($('#form input[name="mal_estado"]').is(':checked') === true)? '1' : false;
+
+
+    $('#form input[type="submit"]').val('Guardando datos');
 
     var form = new FormData();
     form.append("id", "1");
@@ -42,7 +46,12 @@ $( document ).ready(function() {
     }
 
     $.ajax(settings).done(function (response) {
-      console.log(response);
+      document.getElementById("form").reset();
+
+      $('#form input[type="submit"]').val('Datos guardados').delay(2200).val('Enviar');
+
+
+
     });
 
   });

@@ -1,0 +1,36 @@
+// map.data.loadGeoJson('http://localhost:8000/nomenclador');
+// map.data.loadGeoJson('http://localhost:8888/GISLOBOS/api/public/nomenclador');
+// window.eqfeed_callback = function(results) {
+//
+// for (var i = 0; i < results.features.length; i++) {
+// 	var coords = results.features[i].geometry.coordinates;
+// 	var latLng = new google.maps.LatLng(coords[1],coords[0]);
+// 	var caracteristicas = results.features[i].properties.falta_nomenclador;
+// 	var marker = new google.maps.Marker({
+// 		position: latLng,
+// 		map: map,
+// 		clickable: true,
+// 		icon: {
+// 			path: google.maps.SymbolPath.CIRCLE,
+// 			fillColor: 'red',
+// 			fillOpacity: .3,
+// 			 }
+// 			});
+// 		}
+// 	}
+// function eqfeed_callback(results) {
+//         map.data.addGeoJson(results);
+// 				console.log('fede');
+//       }
+
+
+// 	var geocoder = new google.maps.Geocoder;
+// 	var infowindow = new google.maps.InfoWindow;
+//
+// 	map.addListener('dblclick', function(e) {
+// 		placeMarker(e.latLng, map);
+// 		llenarFormulario(e.latLng);
+// 		geocodeLatLng(geocoder, map,  e.latLng);
+// 	});
+//
+// }
