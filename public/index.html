@@ -25,9 +25,12 @@
     </style>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfblT4FmCzVOJNslU2HoYgmUv5W3Fc0nQ&callback=initMap">
-      </script>
+        </script>
+
+
+      <script src="js/gis2.js" type="text/javascript" charset="utf-8"></script>
+
     <!-- <script src="js/gis.js" type="text/javascript" charset="utf-8"></script> -->
-    <script src="js/gis.js" type="text/javascript" charset="utf-8"></script>
 
 <body>
 
@@ -43,7 +46,7 @@
     <div class="row content">
 
         <div class="col-md-7">
-            <div id="map_canvas" style="height: 600px;"></div>
+            <div id="map" style="height: 600px;"></div>
         </div>
 
         <div class="col-md-5">
@@ -60,25 +63,25 @@
 
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="falta_cano">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_cano" name="falta_cano">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta caño</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="falta_nomenclador">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_nomenclador" name="falta_nomenclador">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta Nomenclador</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="falta_flecha">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_flecha" name="falta_flecha">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta Flecha</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="mal_estado">
+                          <input type="checkbox" class="custom-control-input" value="1" id="mal_estado" name="mal_estado">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Mal Estado</span>
                         </label>

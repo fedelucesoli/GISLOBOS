@@ -1,9 +1,5 @@
-
-var map;
-var marker;
-
 function initMap() {
-	map = new google.maps.Map(document.getElementById('map'), {
+	var map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: -35.1870349, lng: -59.0949762},
 		zoom: 14,
 		disableDefaultUI: true,
@@ -19,50 +15,34 @@ function initMap() {
 					}
 				]
 	});
-
 	var geocoder = new google.maps.Geocoder();
-
-	var markers = map.data.loadGeoJson('http://localhost:8000/nomenclador');
-
+	map.data.loadGeoJson('http://localhost:8000/nomenclador');
 	map.data.setStyle(function(feature) {
-		var clasificacion = feature.getProperty;
-		return {
-			// draggable: true,
-			icon: getCircle(clasificacion)
-		};
+	    var color = feature.getProperty('color');
+	    return {
+	      icon: {
+					path: google.maps.SymbolPath.CIRCLE,
+					fillColor: color,
+					strokeWeight: 0,
+					fillOpacity: 1,
+					scale: 5,
+				},
+
+	    };
 	});
 
-	map.addListener('dblclick', function(e) {
-          placeMarker(e.latLng, map);
-          llenarFormulario(e.latLng);
-          geocodeLatLng(geocoder, map,  e.latLng);
-        });
+	map.addListener('click', function(e) {
+					placeMarker(e.latLng, map);
+					llenarFormulario(e.latLng);
+					geocodeLatLng(geocoder, map,  e.latLng);
+				});
 
-	markers.addListener('click', function(e) {
-		 // document.getElementById('id').value = event.feature.getProperty('id');
-		 // document.getElementById('direccion').value = event.feature.getProperty('direccion');
-		 // document.getElementById('latitud').value = event.feature.getGeometry().get().lat();
-		 // document.getElementById('longitud').value = event.feature.getGeometry().get().lng();
-		//  infowindow.open(marker, this);
-			console.log('click');
-		});
+	map.data.addListener('click', function(e) {
+					console.log('click');
+				});
 
-	var infowindow = new google.maps.InfoWindow({
-    content: 'FEDE'
-  });
+};
 
-}
-
-function getCircle(clasificacion) {
-	return {
-		path: google.maps.SymbolPath.CIRCLE,
-		fillColor: 'red',
-		strokeWeight: 0,
-		//colorMarker(),
-		fillOpacity: 1,
-		scale: 5,
-	};
-}
 
 function placeMarker(latLng, map) {
 			 marker = new google.maps.Marker({
@@ -74,6 +54,8 @@ function placeMarker(latLng, map) {
 						scale: 5,
 					},
 			 });
+			 marker.addListener('dragend', function(e){llenarFormulario(e.latLng)});
+
 
 }
 

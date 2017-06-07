@@ -5,10 +5,10 @@ $( document ).ready(function() {
 
     e.preventDefault();
     var button = $('#form input[type="submit"]'),
-        falta_cano = ($('#form input[name="falta_cano"]').is(':checked') === true)? '1' : false,
-        falta_nomenclador = ($('#form input[name="falta_nomenclador"]').is(':checked') === true)? '1' : false,
-        falta_flecha = ($('#form input[name="falta_flecha"]').is(':checked') === true)? '1' : false,
-        mal_estado = ($('#form input[name="mal_estado"]').is(':checked') === true)? '1' : false;
+        falta_cano = ($('#form input[name="falta_cano"]').is(':checked') === true)? true : false,
+        falta_nomenclador = ($('#form input[name="falta_nomenclador"]').is(':checked') === true)? true : false,
+        falta_flecha = ($('#form input[name="falta_flecha"]').is(':checked') === true)? true : false,
+        mal_estado = ($('#form input[name="mal_estado"]').is(':checked') === true)? true : false;
 
 
     $('#form input[type="submit"]').val('Guardando datos');
@@ -21,10 +21,10 @@ $( document ).ready(function() {
     form.append("lat", $('#form input[name="latitud"]').val());
 
 
-    form.append("falta_cano", falta_cano);
-    form.append("falta_nomenclador", falta_nomenclador);
-    form.append("falta_flecha", falta_flecha);
-    form.append("mal_estado", mal_estado);
+    form.append("falta_cano", $('#form input[name="falta_cano"]').is(':checked'));
+    form.append("falta_nomenclador", $('#form input[name="falta_nomenclador"]').is(':checked'));
+    form.append("falta_flecha", $('#form input[name="falta_flecha"]').is(':checked'));
+    form.append("mal_estado", $('#form input[name="mal_estado"]').is(':checked'));
 
 
     form.append("revision", $('#form input[name="revision"]').val());

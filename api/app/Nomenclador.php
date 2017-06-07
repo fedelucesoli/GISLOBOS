@@ -24,6 +24,7 @@ class Nomenclador extends Model
       'falta_nomenclador',
       'falta_flecha',
       'mal_estado',
+      'color',
       'revision',
     ];
     protected $table = 'nomencladores';
