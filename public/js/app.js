@@ -37,7 +37,6 @@ $( document ).ready(function() {
       "method": "POST",
       "headers": {
         "cache-control": "no-cache",
-        "postman-token": "0481fa89-a314-7fb3-feb7-6a6778240e96"
       },
       "processData": false,
       "contentType": false,
@@ -57,5 +56,8 @@ $( document ).ready(function() {
   });
 
 
-
+  // $('#deleteNomenclador').click(function(e){
+  //   e.preventDefault();
+  //   console.log('DELETE');
+  // });
 });

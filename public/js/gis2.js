@@ -16,7 +16,18 @@ function initMap() {
 				]
 	});
 	var geocoder = new google.maps.Geocoder();
-	map.data.loadGeoJson('http://localhost:8000/nomenclador');
+	// map.data.loadGeoJson('http://localhost:8000/nomenclador');
+
+	$.getJSON('http://localhost:8000/nomenclador', function (data) {
+	  var features = map.data.addGeoJson(data);
+
+	  // // Setup event handler to remove GeoJSON features
+	  // map.event.addDomListener(document.getElementById('removeBtn'), 'click', function () {
+	  //   for (var i = 0; i < features.length; i++)
+	  //     map.data.remove(features[i]);
+	  // });
+	});
+
 	map.data.setStyle(function(feature) {
 	    var color = feature.getProperty('color');
 	    return {
@@ -31,21 +42,35 @@ function initMap() {
 	    };
 	});
 
+	var infowindow = new google.maps.InfoWindow({
+	    content: '<a href="#" id="deleteNomenclador">Eliminar</a>'
+	  });
+
 	map.addListener('click', function(e) {
 					placeMarker(e.latLng, map);
 					llenarFormulario(e.latLng);
 					geocodeLatLng(geocoder, map,  e.latLng);
 				});
 
-	map.data.addListener('click', function(e) {
-					console.log('click');
+	map.data.addListener('click', function(e, feature) {
+					var pos = e.latLng,
+							uid = e.feature.getProperty('uid');
+					infowindow.setPosition(pos);
+					infowindow.open(map);
+					$('#deleteNomenclador').click(function(e){
+				    e.preventDefault();
+						deleteAjax(uid)
+						map.data.remove(feature);
+				  });
 				});
 
 };
 
 
 function placeMarker(latLng, map) {
-			 marker = new google.maps.Marker({
+	var geocoder = new google.maps.Geocoder();
+
+			marker = new google.maps.Marker({
 				 position: latLng,
 				 map: map,
 				 draggable: true,
@@ -54,8 +79,14 @@ function placeMarker(latLng, map) {
 						scale: 5,
 					},
 			 });
-			 marker.addListener('dragend', function(e){llenarFormulario(e.latLng)});
+			 marker.addListener('dragend', function(e){
+				 llenarFormulario(e.latLng);
+				 geocodeLatLng(geocoder, map,  e.latLng);
+			 });
 
+			 marker.addListener('click', function(e) {
+		 					console.log('click');
+		 				});
 
 }
 
@@ -80,3 +111,23 @@ function geocodeLatLng(geocoder, map, latLng) {
 		}
 	});
 }
+
+function deleteAjax(uid){
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": "http://localhost:8000/nomenclador/"+uid,
+		"method": "DELETE",
+		"headers": {
+			"cache-control": "no-cache",
+		},
+		"processData": false,
+		"contentType": false,
+		"mimeType": "multipart/form-data",
+		"data": uid
+	}
+	$.ajax(settings).done(function (response) {
+		console.log('DELETE correcto');
+		return true;
+	});
+};
