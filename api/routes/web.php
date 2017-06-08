@@ -18,17 +18,10 @@ $app->get('foo', function () {
     return 'Hello World';
 });
 
-$app->get('fede', function(){
-  echo 'FEDE';
-});
-
-
 $app->get('nomenclador', 'NomencladorController@index');
 
 $app->put('Nomenclador/{id}', 'NomencladorController@updateNomenclador');
 
 $app->post('nomenclador','NomencladorController@createNomenclador');
 
- //
- // $app->delete('Nomenclador/{id}','Nomenclador@deleteNomenclador');
- //
+$app->delete('nomenclador/{id}','NomencladorController@deleteNomenclador');

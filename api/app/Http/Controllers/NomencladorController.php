@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Nomenclador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class NomencladorController extends Controller
 {
@@ -31,9 +32,11 @@ class NomencladorController extends Controller
      if(empty($color)){
        $color = "green";
      }
+     $fecha = date_create();
+     $uid = date_timestamp_get($fecha);
 
       $nomenclador = new Nomenclador;
-      // $nomenclador->userId = $request->userId;
+      $nomenclador->uid = $uid;
       $nomenclador->direccion = $request->input('direccion');
       $nomenclador->long = $request->input('long');
       $nomenclador->lat = $request->input('lat');
@@ -61,9 +64,9 @@ class NomencladorController extends Controller
 	}
 
 	public function deleteNomenclador($id){
-    	$nomenclador  = Nomenclador::find($id);
+    	$nomenclador = Nomenclador::where('uid', $id);
     	$nomenclador->delete();
-
+      
     	return response()->json('Removed successfully.');
 	}
 
@@ -83,6 +86,7 @@ class NomencladorController extends Controller
           ),
           'properties' => array(
             'id' => $key->id,
+            'uid' => $key->uid,
             'direccion' => $key->direccion,
             'falta_cano' => $key->falta_cano,
             'falta_nomenclador' => $key->falta_nomenclador,
