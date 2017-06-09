@@ -1,3 +1,5 @@
+<?php require "login/loginheader.php"; ?>
+
 <!doctype html>
 <html>
 <head>
@@ -7,14 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="style.css"/>
-    
     <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script async="true" src="https://vuejs.org/js/vue.js"></script>
-
+    <script type="text/javascript" src="js/app.js"></script>
 
 </head>
 <style>
-
       #map {
         height: 100%;
       }
@@ -23,100 +22,75 @@
         margin: 0;
         padding: 0;
       }
+
+
     </style>
-<body>
-
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-          center: {lat: -35.1870349, lng: -59.0949762},
-          zoom: 14,
-          disableDoubleClickZoom: true,
-          disableDefaultUI: true,
-          styles: [
-                {
-                  featureType: 'poi.business',
-                  stylers: [{visibility: 'off'}]
-                },
-                {
-                  featureType: 'transit',
-                  elementType: 'labels.icon',
-                  stylers: [{visibility: 'off'}]
-                }
-              ]
-
-
-        });
-
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-
-  }
-
-    </script>
-
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfblT4FmCzVOJNslU2HoYgmUv5W3Fc0nQ&callback=initMap">
-      </script>
+        </script>
+
+
+      <script src="js/gis2.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- <script src="js/gis.js" type="text/javascript" charset="utf-8"></script> -->
+
+<body>
 
 
       <div class="container">
-      <nav class="navbar navbar-toggleable-md navbar-inverse  bg-inverse">
+      <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <a class="navbar-brand" href="#">Nomencladores Lobos</a>
-
       </nav>
     </div>
     <br>
-<div class="container" id="app">
-
-
+<div class="container">
 
     <div class="row content">
 
         <div class="col-md-7">
-            <div id="map_canvas" style="height: 600px;"></div>
+            <div id="map" style="height: 600px;"></div>
         </div>
 
         <div class="col-md-5">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 class="panel-title text-center">Agregar marcador {{ message }}
- <span class="glyphicon glyphicon-map-marker"></span></h2>
+                    <h2 class="panel-title text-center">Agregar marcador  <span class="glyphicon glyphicon-map-marker"></span></h2>
                 </div>
                 <!-- Panel Body -->
                 <div class="panel-body">
 
                     <form name ="addForm" id="form" novalidate>
                         <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
+                        <input type="hidden" class="form-control" id="id" placeholder="" name="id">
+
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" value="1" name="falta_cano">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_cano" name="falta_cano">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta caño</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" value="1" name="falta_nomenclador">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_nomenclador" name="falta_nomenclador">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta Nomenclador</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" value="1" name="falta_flecha">
+                          <input type="checkbox" class="custom-control-input" value="1" id="falta_flecha" name="falta_flecha">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Falta Flecha</span>
                         </label>
                         <hr>
                         <label class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" value="1" name="mal_estado">
+                          <input type="checkbox" class="custom-control-input" value="1" id="mal_estado" name="mal_estado">
                           <span class="custom-control-indicator"></span>
                           <span class="custom-control-description">Mal Estado</span>
                         </label>
                         <hr><br>
                         <div class="form-group">
                             <label for="direccion">Direccion <span class="badge">Cargando</span></label>
-                            <input type="text" class="form-control" id="direccion" placeholder="Salgado 40" name="direccion" required>
+                            <input type="text" class="form-control" id="direccion" placeholder="" name="direccion" required>
                         </div>
                         <div class="form-group">
                             <label for="longitud">Longitud <span class="badge">Cargando</span></label>
@@ -127,10 +101,7 @@
                             <label for="latitud">Latitud <span class="badge">Cargando</span></label>
                             <input type="text" class="form-control" id="latitud" placeholder="" name="latitud" readonly>
                         </div>
-
-
-                        <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
-                        <button type="submit" class="btn btn-danger btn-block">Enviar</button>
+                        <input type="submit" class="btn btn-danger btn-block" value="Enviar">
                     </form>
                 </div>
             </div>
@@ -144,9 +115,6 @@
         Municipio de Lobos - Secretaría de Gobierno</p>
     </div>
 </div>
-
-<script type="text/javascript" src="js/vue.js"></script>
-
 
 </body>
 </html>

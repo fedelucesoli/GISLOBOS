@@ -24,7 +24,7 @@ class Nomencladores extends Migration
           $table->boolean('falta_nomenclador')->default(0);
           $table->boolean('falta_flecha')->default(0);
           $table->boolean('mal_estado')->default(0);
-          $table->boolean('color', 50)->default('black');
+          $table->string('color', 50)->default('black');
           $table->boolean('revision')->default(0);
           $table->timestamps();
 
