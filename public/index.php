@@ -92,14 +92,20 @@
                             <label for="direccion">Direccion <span class="badge">Cargando</span></label>
                             <input type="text" class="form-control" id="direccion" placeholder="" name="direccion" required>
                         </div>
-                        <div class="form-group">
-                            <label for="longitud">Longitud <span class="badge">Cargando</span></label>
-                            <input type="text" class="form-control" id="longitud" placeholder="" name="longitud" readonly>
-                        </div>
-                        <div class="form-group">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="longitud">Longitud <span class="badge">Cargando</span></label>
+                                <input type="text" class="form-control" id="longitud" placeholder="" name="longitud" readonly>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="latitud">Latitud <span class="badge">Cargando</span></label>
+                                <input type="text" class="form-control" id="latitud" placeholder="" name="latitud" readonly>
+                            </div>
+                          </div>
 
-                            <label for="latitud">Latitud <span class="badge">Cargando</span></label>
-                            <input type="text" class="form-control" id="latitud" placeholder="" name="latitud" readonly>
                         </div>
                         <input type="submit" class="btn btn-danger btn-block" value="Enviar">
                     </form>

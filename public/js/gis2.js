@@ -19,7 +19,7 @@ function initMap() {
 	// map.data.loadGeoJson('http://localhost:8000/nomenclador');
 
 	$.getJSON('http://localhost:8000/nomenclador', function (data) {
-	  var features = map.data.addGeoJson(data);
+	   features = map.data.addGeoJson(data);
 
 	  // // Setup event handler to remove GeoJSON features
 	  // map.event.addDomListener(document.getElementById('removeBtn'), 'click', function () {
@@ -52,15 +52,20 @@ function initMap() {
 					geocodeLatLng(geocoder, map,  e.latLng);
 				});
 
-	map.data.addListener('click', function(e, feature) {
+	map.data.addListener('click', function(e, features) {
 					var pos = e.latLng,
 							uid = e.feature.getProperty('uid');
+							 selectedFeature = e.feature;
 					infowindow.setPosition(pos);
 					infowindow.open(map);
 					$('#deleteNomenclador').click(function(e){
 				    e.preventDefault();
-						deleteAjax(uid)
-						map.data.remove(feature);
+						deleteAjax(uid);
+						// var id = feature.getId();
+						// map.data.Feature.removeProperty(e);
+						map.data.remove(selectedFeature);
+						infowindow.close(map);
+
 				  });
 				});
 

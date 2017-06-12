@@ -1,9 +1,14 @@
 <?php
 //DATABASE CONNECTION VARIABLES
-$host = "127.0.0.1:8889"; // Host name
+$host = "127.0.0.1"; // Host name
 $username = "root"; // Mysql username
-$password = "root"; // Mysql password
+$password = ""; // Mysql password
 $db_name = "gislobos"; // Database name
+
+// $host = "127.0.0.1:8889"; // Host name
+// $username = "root"; // Mysql username
+// $password = "root"; // Mysql password
+// $db_name = "gislobos"; // Database name
 
 //DO NOT CHANGE BELOW THIS LINE UNLESS YOU CHANGE THE NAMES OF THE MEMBERS AND LOGINATTEMPTS TABLES
 
