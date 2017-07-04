@@ -18,7 +18,7 @@ function initMap() {
 	var geocoder = new google.maps.Geocoder();
 	// map.data.loadGeoJson('http://localhost:8000/nomenclador');
 
-	$.getJSON('http://localhost:8000/nomenclador', function (data) {
+	$.getJSON('http://lobos.gov.ar/nomencladores/api/public/nomenclador', function (data) {
 	   features = map.data.addGeoJson(data);
 
 	  // // Setup event handler to remove GeoJSON features
@@ -121,7 +121,7 @@ function deleteAjax(uid){
 	var settings = {
 		"async": true,
 		"crossDomain": true,
-		"url": "http://localhost:8000/nomenclador/"+uid,
+		"url": "http://lobos.gov.ar/nomencladores/api/public/nomenclador/"+uid,
 		"method": "DELETE",
 		"headers": {
 			"cache-control": "no-cache",

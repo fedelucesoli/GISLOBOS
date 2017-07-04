@@ -7,9 +7,9 @@
     <title>Nomencladores</title>
     <meta name="description" content="Plataforma para geolocalizar nomencladores de la ciudad de Lobos">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="style.css"/>
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 
 </head>
@@ -40,6 +40,9 @@
       <div class="container">
       <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <a class="navbar-brand" href="#">Nomencladores Lobos</a>
+        <ul class="nav navbar-nav navbar-toggler-right">
+          <li><a href="login/logout.php" style="color: white">Cerrar Sesion</a></li>
+        </ul>
       </nav>
     </div>
     <br>

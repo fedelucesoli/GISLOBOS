@@ -1,9 +1,9 @@
 <?php
 //DATABASE CONNECTION VARIABLES
-$host = "127.0.0.1"; // Host name
-$username = "root"; // Mysql username
-$password = ""; // Mysql password
-$db_name = "gislobos"; // Database name
+$host = "localhost"; // Host name
+$username = "jv000375_gislob"; // Mysql username
+$password = "36zoBEbavo"; // Mysql password
+$db_name = "jv000375_gislob"; // Database name
 
 // $host = "127.0.0.1:8889"; // Host name
 // $username = "root"; // Mysql username

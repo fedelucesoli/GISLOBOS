@@ -33,7 +33,7 @@ $( document ).ready(function() {
       "async": true,
       "crossDomain": true,
       // "url": "http://localhost:8000/GISLOBOS/api/public/nomenclador",
-      "url": "http://localhost:8000/nomenclador",
+      "url": "http://lobos.gov.ar/nomencladores/api/public/nomenclador",
       "method": "POST",
       "headers": {
         "cache-control": "no-cache",
