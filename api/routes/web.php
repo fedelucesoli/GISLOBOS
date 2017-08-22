@@ -17,6 +17,7 @@ $app->get('/', function () use ($app) {
 
 
 $app->get('nomenclador', 'NomencladorController@index');
+$app->get('estadisticas', 'NomencladorController@estadisticas');
 
 $app->put('Nomenclador/{id}', 'NomencladorController@updateNomenclador');
 

@@ -66,7 +66,7 @@ class NomencladorController extends Controller
 	public function deleteNomenclador($id){
     	$nomenclador = Nomenclador::where('uid', $id);
     	$nomenclador->delete();
-      
+
     	return response()->json('Removed successfully.');
 	}
 
@@ -102,4 +102,22 @@ class NomencladorController extends Controller
       return response($geojson)
             ->header('Content-Type', 'application/json');
 	}
+  public function estadisticas(){
+      $nomencladores  = Nomenclador::all();
+
+      $data['total'] = $nomencladores->count();
+      $data['buen_estado'] = $nomencladores->where('color', 'green')->count();
+      $data['falta_cano'] =  $nomencladores->where('falta_cano', true)->count();
+      $data['falta_flecha'] =  $nomencladores->where('falta_flecha', true)->count();
+      $data['falta_nomenclador'] =  $nomencladores->where('falta_nomenclador', true)->count();
+      $data['mal_estado'] =  $nomencladores->where('color', 'black')->count();
+      // $data['total'] = Nomenclador::all();
+      // $data['buen_estado'] = Nomenclador::all();
+      // $data['mal_estado'] = Nomenclador::all();
+      // $data['falta_cano'] =  Nomenclador::where('falta_cano', true)->get();
+      // $data['falta_flecha'] =  Nomenclador::where('falta_flecha', true)->get();
+      // $data['falta_nomenclador'] =  Nomenclador::where('falta_nomenclador', true)->get();
+      // $data['mal_estado'] =  Nomenclador::where('mal_estado', true)->get();
+      return response($data);
+  }
 }
